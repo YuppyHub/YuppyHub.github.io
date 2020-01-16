@@ -1,5 +1,194 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Nacos 集群环境安装 - Yuppy 的博客</title><meta description="一、什么是nacos ?1.1 nacos 官方介绍 Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。  简单说， nacos 可以注册 s"><meta property="og:type" content="blog"><meta property="og:title" content="Nacos 集群环境安装"><meta property="og:url" content="https://yuu.pub/"><meta property="og:site_name" content="Yuppy 的博客"><meta property="og:description" content="一、什么是nacos ?1.1 nacos 官方介绍 Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。  简单说， nacos 可以注册 s"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2020-01-15T02:30:57.000Z"><meta property="article:modified_time" content="2020-01-16T02:43:54.916Z"><meta property="article:author" content="Yuppy"><meta property="article:tag" content="nacos"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://yuu.pub/2020/01/15/nacos_installer/nacos_installer.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://yuu.pub/2020/01/15/nacos_installer/"},"headline":"Yuppy 的博客","image":["https://yuu.pub/2020/01/15/nacos_installer/nacos_installer.png"],"datePublished":"2020-01-15T02:30:57.000Z","dateModified":"2020-01-16T02:43:54.916Z","author":{"@type":"Person","name":"Yuppy"},"description":"一、什么是nacos ?1.1 nacos 官方介绍 Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。  简单说， nacos 可以注册 s"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><link rel="stylesheet" href="/css/style.css"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Yuppy 的博客" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" dateTime="2020-01-15T02:30:57.000Z">2020-01-15</time><span class="level-item"><a class="link-muted" href="/categories/nacos/">nacos</a><span> / </span><a class="link-muted" href="/categories/spring-cloud/">spring cloud</a></span><span class="level-item">6 分钟 读完 (大约 873 个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Nacos 集群环境安装</h1><div class="content"><h2 id="一、什么是nacos"><a href="#一、什么是nacos" class="headerlink" title="一、什么是nacos ?"></a>一、什么是nacos ?</h2><h3 id="1-1-nacos-官方介绍"><a href="#1-1-nacos-官方介绍" class="headerlink" title="1.1 nacos 官方介绍"></a>1.1 <a href="nacos.io">nacos</a> 官方介绍</h3><blockquote>
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Nacos 集群环境安装 - Yuppy 的博客</title>
+
+
+    <meta name="description" content="一、什么是nacos ?1.1 nacos 官方介绍 Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。  简单说， nacos 可以注册 s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nacos 集群环境安装">
+<meta property="og:url" content="https://yuu.pub/2020/01/15/nacos_installer/index.html">
+<meta property="og:site_name" content="Yuppy 的博客">
+<meta property="og:description" content="一、什么是nacos ?1.1 nacos 官方介绍 Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。  简单说， nacos 可以注册 s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yuu.pub/images/og_image.png">
+<meta property="article:published_time" content="2020-01-15T02:30:57.000Z">
+<meta property="article:modified_time" content="2020-01-16T02:43:54.916Z">
+<meta property="article:author" content="Yuppy">
+<meta property="article:tag" content="nacos">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuu.pub/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156038263-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-156038263-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?f6acc766f3491716f82efa0716a7c7fc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    <script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1640225,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+    <script data-ad-client="ca-pub-4327943744181213" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<!-- <body class="is-3-column"> -->
+    <body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Nacos 集群环境安装" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-15T02:30:57.000Z">2020-01-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/nacos/">nacos</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/spring-cloud/">spring cloud</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 873 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Nacos 集群环境安装
+            
+        </h1>
+        <div class="content">
+            <h2 id="一、什么是nacos"><a href="#一、什么是nacos" class="headerlink" title="一、什么是nacos ?"></a>一、什么是nacos ?</h2><h3 id="1-1-nacos-官方介绍"><a href="#1-1-nacos-官方介绍" class="headerlink" title="1.1 nacos 官方介绍"></a>1.1 <a href="nacos.io">nacos</a> 官方介绍</h3><blockquote>
 <p>Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。<br>Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。</p>
 </blockquote>
 <p>简单说， nacos 可以注册 spring cloud 服务也可以管理服务的配置， 用来替代 eureka, consul, 以及 spring cloud config </p>
@@ -46,27 +235,823 @@ A[Nacos client] --> B(Nginx)
 <li>Nginx 配置 nacos 集群代理</li>
 <li>Nacos 与 spring cloud 的结合使用</li>
 </ul>
-</div><div class="article-tags size-small is-uppercase mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/nacos/">nacos</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/01/13/python_online/"><span class="level-item">python 在线写代码</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block line-height-inherit">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="/"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="/"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="/"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex" href="#一、什么是nacos"><span class="mr-2">1</span><span>一、什么是nacos ?</span></a><ul class="menu-list"><li><a class="is-flex" href="#1-1-nacos-官方介绍"><span class="mr-2">1.1</span><span>1.1 nacos 官方介绍</span></a></li><li><a class="is-flex" href="#1-2-nacos-的集群结构图"><span class="mr-2">1.2</span><span>1.2 nacos 的集群结构图</span></a></li></ul></li><li><a class="is-flex" href="#二、Nacos-的下载"><span class="mr-2">2</span><span>二、Nacos 的下载</span></a><ul class="menu-list"><li><a class="is-flex" href="#2-1-下载地址"><span class="mr-2">2.1</span><span>2.1 下载地址</span></a></li></ul></li><li><a class="is-flex" href="#三、Nacos-的-单机版本运行"><span class="mr-2">3</span><span>三、Nacos 的 单机版本运行</span></a><ul class="menu-list"><li><a class="is-flex" href="#3-1-单机版本部署适用于测试期间，直接运行命令就可以"><span class="mr-2">3.1</span><span>3.1 单机版本部署适用于测试期间，直接运行命令就可以</span></a></li><li><a class="is-flex" href="#3-2-运行成功就可以通过-http-localhost-8848-nacos-访问-Nacos-默认用户名密码是-nacos"><span class="mr-2">3.2</span><span>3.2 运行成功就可以通过 http:&amp;#x2F;&amp;#x2F;localhost:8848&amp;#x2F;nacos 访问 Nacos 默认用户名密码是 nacos</span></a></li></ul></li><li><a class="is-flex" href="#四、集群环境安装"><span class="mr-2">4</span><span>四、集群环境安装</span></a><ul class="menu-list"><li><a class="is-flex" href="#4-1-安装好-mysql-创建好数据库并导入-nacos-conf-nacos-mysql-sql-数据，导入完成后数据库存结构如下"><span class="mr-2">4.1</span><span>4.1 安装好 mysql 创建好数据库并导入 nacos&amp;#x2F;conf&amp;#x2F;nacos-mysql.sql  数据，导入完成后数据库存结构如下</span></a></li><li><a class="is-flex" href="#4-2-编辑-nacos-conf-application-properties"><span class="mr-2">4.2</span><span>4.2 编辑 nacos&amp;#x2F;conf&amp;#x2F;application.properties</span></a></li><li><a class="is-flex" href="#4-3-集群-ip-及端口修改"><span class="mr-2">4.3</span><span>4.3 集群 ip 及端口修改</span></a></li><li><a class="is-flex" href="#4-4-把-nacos-目录复制3份"><span class="mr-2">4.4</span><span>4.4 把 nacos 目录复制3份</span></a></li><li><a class="is-flex" href="#4-5-分别启动每个脚本"><span class="mr-2">4.5</span><span>4.5 分别启动每个脚本</span></a></li></ul></li><li><a class="is-flex" href="#五、后续"><span class="mr-2">5</span><span>五、后续~</span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile is-mobile" href="&lt;%- links[i] %&gt;" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile is-mobile" href="&lt;%- links[i] %&gt;" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/nacos/"><span class="level-start"><span class="level-item">nacos</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/python/"><span class="level-start"><span class="level-item">python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/spring-cloud/"><span class="level-start"><span class="level-item">spring cloud</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content size-small"><p><time dateTime="2020-01-15T02:30:57.000Z">2020-01-15</time></p><p class="title is-6"><a class="link-muted" href="/2020/01/15/nacos_installer/">Nacos 集群环境安装</a></p><p class="is-uppercase"><a class="link-muted" href="/categories/nacos/">nacos</a> / <a class="link-muted" href="/categories/spring-cloud/">spring cloud</a></p></div></article><article class="media"><div class="media-content size-small"><p><time dateTime="2020-01-13T08:30:59.000Z">2020-01-13</time></p><p class="title is-6"><a class="link-muted" href="/2020/01/13/python_online/">python 在线写代码</a></p><p class="is-uppercase"><a class="link-muted" href="/categories/python/">python</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2020/01/"><span class="level-start"><span class="level-item">一月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/nacos/"><span class="tag">nacos</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/"><span class="tag">在线编辑器</span><span class="tag is-grey-lightest">1</span></a></div></div></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button is-primary" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Yuppy 的博客" height="28"></a><p class="size-small"><span>&copy; 2020 Yuppy</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            site: {
-                url: 'https://yuu.pub',
-                external_link: {"enable":true,"exclude":[]}
+ 
+        </div>
+	
+        <ul class="post-copyright">
+        <li><strong>本文标题：</strong><a href="https://yuu.pub/2020/01/15/nacos_installer/">Nacos 集群环境安装</a></li>
+        <li><strong>本文作者：</strong><a href="https://yuu.pub">Yuppy</a></li>
+        <li><strong>本文链接：</strong><a href="https://yuu.pub/2020/01/15/nacos_installer/">https://yuu.pub/2020/01/15/nacos_installer/</a></li>
+        <li><strong>发布时间：</strong>2020-01-15</li>
+        <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+        </li>
+        </ul>
+    
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/nacos/" rel="tag">nacos</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e1c1e520ef42a0019a20349&amp;product=inline-share-buttons&amp;cms=website' async='async'></script>
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.jpeg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpeg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations" />
+    <input type="hidden" name="business" value="tianbao54@163.com" />
+    <input type="hidden" name="currency_code" value="USD" />
+</form>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/13/python_online/">
+                <span class="level-item">python 在线写代码</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'tQlOXNe59poQ4FzlxxArJTpP-gzGzoHsz',
+        app_key: 'IkW5FryYrQfj9ChzHDYp0le0',
+        placeholder: '来说点什么吧~ :)'
+    });
+</script>
+
+    </div>
+</div>
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="/images/shuihu.jpeg" alt="Yuppy">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Yuppy
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        千里之行始于足下
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>杭州</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            2
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            3
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            3
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/YuppyHub" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/YuppyHub">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#一、什么是nacos">
+        <span class="has-mr-6">1</span>
+        <span>一、什么是nacos ?</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-1-nacos-官方介绍">
+        <span class="has-mr-6">1.1</span>
+        <span>1.1 nacos 官方介绍</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-2-nacos-的集群结构图">
+        <span class="has-mr-6">1.2</span>
+        <span>1.2 nacos 的集群结构图</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#二、Nacos-的下载">
+        <span class="has-mr-6">2</span>
+        <span>二、Nacos 的下载</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-1-下载地址">
+        <span class="has-mr-6">2.1</span>
+        <span>2.1 下载地址</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#三、Nacos-的-单机版本运行">
+        <span class="has-mr-6">3</span>
+        <span>三、Nacos 的 单机版本运行</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#3-1-单机版本部署适用于测试期间，直接运行命令就可以">
+        <span class="has-mr-6">3.1</span>
+        <span>3.1 单机版本部署适用于测试期间，直接运行命令就可以</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-2-运行成功就可以通过-http-localhost-8848-nacos-访问-Nacos-默认用户名密码是-nacos">
+        <span class="has-mr-6">3.2</span>
+        <span>3.2 运行成功就可以通过 http://localhost:8848/nacos 访问 Nacos 默认用户名密码是 nacos</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#四、集群环境安装">
+        <span class="has-mr-6">4</span>
+        <span>四、集群环境安装</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#4-1-安装好-mysql-创建好数据库并导入-nacos-conf-nacos-mysql-sql-数据，导入完成后数据库存结构如下">
+        <span class="has-mr-6">4.1</span>
+        <span>4.1 安装好 mysql 创建好数据库并导入 nacos/conf/nacos-mysql.sql  数据，导入完成后数据库存结构如下</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-2-编辑-nacos-conf-application-properties">
+        <span class="has-mr-6">4.2</span>
+        <span>4.2 编辑 nacos/conf/application.properties</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-3-集群-ip-及端口修改">
+        <span class="has-mr-6">4.3</span>
+        <span>4.3 集群 ip 及端口修改</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-4-把-nacos-目录复制3份">
+        <span class="has-mr-6">4.4</span>
+        <span>4.4 把 nacos 目录复制3份</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-5-分别启动每个脚本">
+        <span class="has-mr-6">4.5</span>
+        <span>4.5 分别启动每个脚本</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#五、后续">
+        <span class="has-mr-6">5</span>
+        <span>五、后续~</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://tool.ren" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">人工网</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">tool.ren</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/nacos/">
+            <span class="level-start">
+                <span class="level-item">nacos</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/python/">
+            <span class="level-start">
+                <span class="level-item">python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/spring-cloud/">
+            <span class="level-start">
+                <span class="level-item">spring cloud</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/nacos/" style="font-size: 10px;">nacos</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 10px;">在线编辑器</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/15/nacos_installer/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Nacos 集群环境安装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-15T02:30:57.000Z">2020-01-15</time></div>
+                    <a href="/2020/01/15/nacos_installer/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nacos 集群环境安装</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/nacos/">nacos</a> / <a class="has-link-grey -link" href="/categories/spring-cloud/">spring cloud</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/13/python_online/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="python 在线写代码">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T08:30:59.000Z">2020-01-13</time></div>
+                    <a href="/2020/01/13/python_online/" class="title has-link-black-ter is-size-6 has-text-weight-normal">python 在线写代码</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/python/">python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/nacos/">
+                        <span class="tag">nacos</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/python/">
+                        <span class="tag">python</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/">
+                        <span class="tag">在线编辑器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/15/nacos_installer/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Nacos 集群环境安装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-15T02:30:57.000Z">2020-01-15</time></div>
+                    <a href="/2020/01/15/nacos_installer/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nacos 集群环境安装</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/nacos/">nacos</a> / <a class="has-link-grey -link" href="/categories/spring-cloud/">spring cloud</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/13/python_online/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="python 在线写代码">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T08:30:59.000Z">2020-01-13</time></div>
+                    <a href="/2020/01/13/python_online/" class="title has-link-black-ter is-size-6 has-text-weight-normal">python 在线写代码</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/python/">python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/nacos/">
+                        <span class="tag">nacos</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/python/">
+                        <span class="tag">python</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/">
+                        <span class="tag">在线编辑器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Nacos 集群环境安装" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Yuppy&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+		
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+	if (window.mermaid) {
+	  mermaid.initialize({theme: 'neutral'});
+	}
+  </script>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://yuu.pub',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back-to-top.js" defer></script><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script src="/js/gallery.js" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><link rel="stylesheet" href="/css/insight.css"><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="想要查找什么..."><span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"></div></div></div></div><script>(function (window) {
-            var INSIGHT_CONFIG = {
-                TRANSLATION: {
-                    POSTS: '文章',
-                    PAGES: '页面',
-                    CATEGORIES: '分类',
-                    TAGS: '标签',
-                    UNTITLED: '(无标题)',
-                },
-                CONTENT_URL: '/content.json',
-            };
-            window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-        })(window);</script><script src="/js/insight.js" defer></script></body></html>
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/gh/yuppyhub/live2d-widget@0.7.5/autoload.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+</html>
